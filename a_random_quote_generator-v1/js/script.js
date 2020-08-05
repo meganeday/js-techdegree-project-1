@@ -3,12 +3,16 @@ Treehouse FSJS Techdegree:
 project 1 - A Random Quote Generator
 ******************************************/
 
-// For assistance: 
-// Check the "Project Resources" section of the project instructions
-// Reach out in your Slack community - https://treehouse-fsjs-102.slack.com/app_redirect?channel=chit-chat
+/*** 
+   * For this project I utilized the FSJS Project Walkthrough 
+   * & re-watched TreeHouse instructional videos for guidance.
+***/
 
 /***
-   * `quotes` array 
+   * The `quotes` array is an array of objects, each containing a 
+   * quote and source (author).
+   * Most of the objects also contain values for citation (book, 
+   * speech, etc.) and year.
 ***/
 const quotes = [
   {
@@ -94,42 +98,74 @@ const quotes = [
     source: 'John Green',
     citation: 'The Fault in Our Stars',
     year: 2012
+  },
+  {
+    quote: 'You only live once, but if you do it right, once is enough.',
+    source: 'Mae West'
+  },
+  {
+    quote: 'No one can make you feel inferior without your consent.',
+    source: 'Eleanor Roosevelt',
+    citation: 'This is My Story',
   }
 ];
 
+//log the `quotes` array to the console to check for bugs
 console.log(quotes);
 
 /***
- * `getRandomQuote` function
+ * The `getRandomQuote` function is able to select an object
+ * from the `quotes` array at random.
 ***/
 
 function getRandomQuote() {
 
-// 1. Create a variable that generates a random number
-// between zero and the last index in the `quotes` array
+// The `randomNumber` variable calculates a random number
+// between 0 and the length of the `quotes` array.
 
   let randomNumber = Math.floor( Math.random() * quotes.length);
   console.log(randomNumber);
-
-// 2. Use the random number variable and bracket notation 
-// to grab a random object from the `quotes` array, and 
-// store it in a variable
+ 
+// The value associated with `randomNumber` in the `quotes` array 
+// is then stored in the variable `randomQuote` using bracket notation.
 
   let randomQuote = quotes[randomNumber];
   console.log(randomQuote);
   return randomQuote;
 };
 
+//run `getRandomQuote` function and check for bugs
 getRandomQuote();
 
 /***
- * `printQuote` function
+ * The `printQuote` function calls the `getRandomQuote` function
+ * and prints a randomly generated quote to the webpage.
 ***/
 
 function printQuote() {
+    
+  let quote = getRandomQuote();
+  let html = '';
+    html = `
+    <p class="quote">${quote.quote}</p>
+    <p class="source">${quote.source}
+    if ( quotes.includes(citation) ) {
+      <span class="citation">${quote.citation}</span>
+    } else {
+      <span class="citation"> </span>
+    };
+    if ( quote.includes(year) ) {
+      <span class= "year">${quote.year}</span>
+    } else {
+      <span class="year"> </span>
+    };
+    </p>`
+    
+      //This inserts the string into the HTML file.
+      document.getElementById('quote-box').innerHTML = html;
+  };
 
-
-};
+printQuote();
 
 /***
  * click event listener for the print quote button
