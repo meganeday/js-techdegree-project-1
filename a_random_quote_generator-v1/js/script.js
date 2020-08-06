@@ -4,8 +4,9 @@ project 1 - A Random Quote Generator
 ******************************************/
 
 /*** 
-   * For this project I utilized the FSJS Project Walkthrough 
-   * & re-watched TreeHouse instructional videos for guidance.
+   * For this project I utilized the FSJS Project Walkthrough, 
+   * re-watched TreeHouse instructional videos for guidance, and
+   * reached out to TreeHouse Slack Team for support.
 ***/
 
 /***
@@ -67,7 +68,7 @@ const quotes = [
     quote: 'Contemplation seems to be about the only luxury that costs nothing.',
     source: 'Dodie Smith',
     citation: 'I Capture the Castle',
-    date: 1948
+    year: 1948
   },
   {
     quote: 'I teach you to be warriors in the garden so you will never be gardeners in the war.',
@@ -127,14 +128,13 @@ function getRandomQuote() {
   console.log(randomNumber);
  
 // The value associated with `randomNumber` in the `quotes` array 
-// is then stored in the variable `randomQuote` using bracket notation.
+// is stored in the variable `randomQuote` using bracket notation.
 
   let randomQuote = quotes[randomNumber];
-  console.log(randomQuote);
   return randomQuote;
 };
 
-//run `getRandomQuote` function and check for bugs
+//run `getRandomQuote` function
 getRandomQuote();
 
 /***
@@ -145,25 +145,32 @@ getRandomQuote();
 function printQuote() {
     
   let quote = getRandomQuote();
-  let html = '';
-    html = `
-    <p class="quote">${quote.quote}</p>
-    <p class="source">${quote.source}
-    if ( quotes.includes(citation) ) {
-      <span class="citation">${quote.citation}</span>
-    } else {
-      <span class="citation"> </span>
-    };
-    if ( quote.includes(year) ) {
-      <span class= "year">${quote.year}</span>
-    } else {
-      <span class="year"> </span>
-    };
-    </p>`
-    
-      //This inserts the string into the HTML file.
-      document.getElementById('quote-box').innerHTML = html;
-  };
+
+    // `html` variable initiates the html string
+      let html = ''
+      html =
+      `<p class="quote">${quote.quote}</p>
+      <p class="source">${quote.source}`
+
+      // concatenates the citation of a quote 
+      // to the end of the html string when available
+        if ( quote.citation )  {
+          html += `<span class="citation">${quote.citation}</span>`
+        }; 
+
+      // concatenates the year of a quote
+      // to the end of the html string when available
+        if ( quote.year ) {
+          html += `<span class= "year">${quote.year}</span>`
+        }; 
+
+    // concatenates the closing <p> tag to the end of the html string
+    html += `</p>`
+
+
+  // inserts the concatenated html string into the HTML file
+  document.getElementById('quote-box').innerHTML = html;
+};
 
 printQuote();
 
